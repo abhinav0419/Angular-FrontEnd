@@ -3,42 +3,22 @@
     padding:0;
 }
 
-.cardDetails{
-    background-color: #EEF4F4;
-    margin-top:172px;
-    width:35%;
+table {
+    width: 100%;
 }
-#cardNumberStar{
-    color:#49C3E8;
-    font-size: 25px;
+thead{
+    background-color: #c0c0c0;
 }
-label {
-    color:#383838;
-    font-size: 20px;
-}
-
-.default{
-    background-image:url("../images/default.png");
-}
-.discover {
-    background-image:url("../images/discover.jpg");
-}
-.maestro {
-    background-image:url("../images/maestro.gif");
-}
-.mastercard {
-    background-image:url("../images/mastercard.gif");
-}
-.amex {
-    background-image:url("../images/amex.png");
-}
-.visa {
-    background-image:url("../images/visa.gif");
+tbody>tr:hover,
+.active-row {
+    cursor: pointer;
+    background-color: #4db8ff;
+    color: black;
 }
 
-#cardNumberInput{
-    padding-left: 100px;
-    background-position: left;
-    background-size: 60px 40px;
-    background-repeat: no-repeat;
+.panel-default {
+    border: 2px solid black;
+}
+.table-bordered {
+    border: 2px solid black;
 }

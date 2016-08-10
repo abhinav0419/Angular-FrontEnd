@@ -1,0 +1,21 @@
+{
+  "name": "CodingChallenge",
+  "homepage": "https://github.com/abhinav0419/Angular-FrontEnd",
+  "description": "Angular Sample Filter",
+  "main": "",
+  "authors": [
+    "Abhinav Pandey"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularUtils-pagination": "angular-utils-pagination#^0.11.1"
+  }
+}

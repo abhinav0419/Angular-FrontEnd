@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html ng-app="cardNumberApplication">
+<html>
 <head>
     <title>
-        Card Number to Image Identifier
+        Front End Coding Using Angular
     </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1">
@@ -14,16 +14,62 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/codingChallenge.css">
 </head>
-<body>
-<div class="container cardDetails ">
-    <div class="form-group">
-        <label><span id="cardNumberStar">*</span> &nbsp;CARD NUMBER</label>
+<body data-ng-app="myApp">
+<div class="container">
+    <header>
+        <h1>UX Society Members</h1>
+    </header>
+
+    <section data-ng-controller="mainCtrl as user">
+        <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+            <input type="search" placeholder="Search" class="form-control" data-ng-model="searchText">
+        </div>
         <br>
-        <input type="text" id="cardNumberInput" ng-model="cardNumber" placeholder="Enter Your Card Number" class="form-control {{cardNumber | cardNumberFilter}}" />
-        <script src="bower_components/angular/angular.min.js"></script>
-        <script src="app/app.js"></script>
-        <script src="app/cardNumberFilter.js"></script>
-    </div>
+        <div class="col-md-8 col-sm-6 col-xs-12">
+            <table class="table table-bordered" data-ng-if="user.data">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Occupation</th>
+                    <th>Company</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="member in user.data | filter:searchText | startFrom:currentPage*pageSize | limitTo:pageSize"
+                    data-ng-click="user.selectedMember = member"
+                    data-ng-class="{true: 'active-row', false:''}[user.selectedMember == member] ">
+                    <td>{{member.firstName}} {{member.middleInitial}} {{member.surname}}</td>
+                    <td>{{member.occupation}}</td>
+                    <td>{{member.company}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                Previous
+            </button>
+            {{currentPage+1}}/{{numberOfPages()}}
+            <button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                Next
+            </button>
+        </div>
+        <aside class="col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div data-ng-if="user.selectedMember">
+                    <h2>{{user.selectedMember.firstName}} {{user.selectedMember.middleInitial}}
+                        {{user.selectedMember.surname}}</h2>
+                    <img data-ng-src="{{user.selectedMember.portrait}}">
+                    <p>{{user.selectedMember.email}}</p>
+                    <p>{{user.selectedMember.occupation}}</p>
+                    <p>{{user.selectedMember.company}}</p>
+                    <p>{{user.selectedMember.motto}}</p>
+
+                </div>
+            </div>
+        </aside>
+    </section>
 </div>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="app/app.js"></script>
 </body>
 </html>
